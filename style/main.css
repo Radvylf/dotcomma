@@ -1,0 +1,54 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 6pt;
+    padding: 0;
+    border: 0;
+}
+
+body > * {
+    display: block;
+}
+
+code, textarea {
+    font-family: 'Roboto Mono', courier, monospace;
+}
+
+b {
+    font-size: 10pt;
+    margin-bottom: 6pt;
+    line-height: 1.25;
+}
+
+i {
+    font-size: 8pt;
+    margin-top: -4pt;
+    margin-bottom: 6pt;
+    line-height: 1.25;
+    font-style: normal;
+}
+
+.error {
+    color: #a00000;
+    display: none;
+}
+
+code {
+    padding: 0 1.5pt;
+    margin: 0 1.5pt;
+    background-color: #e0e0e0;
+}
+
+button {
+    font-family: inherit;
+    font-size: 10pt;
+    line-height: 1.25;
+}
+
+textarea {
+    margin-bottom: 6pt;
+    word-break: break-all;
+}
+
+select {
+    margin-bottom: 6pt;
+}
