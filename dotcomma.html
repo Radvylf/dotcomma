@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dotcomma</title>
+        
+        <meta name="author" content="Ryan Tosh (Redwolf Programs)">
+        <meta name="description" content="Dotcomma interpreter frontend that looks terrible but mostly works">
+        <meta name="keywords" content="Dotcomma,Esolang,Interpreter,Dotcomma Interpreter,RedwolfPrograms,Redwolf Programs,Ryan Tosh">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        
+        <link rel="stylesheet" href="style/fonts.css"/>
+        <link rel="stylesheet" href="style/main.css"/>
+        
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <b>Code:</b>
+        <textarea id="code" rows="5" cols="67"></textarea>
+        <i id="brackets" class="error">Unbalanced brackets</i>
+        <b>Input:</b>
+        <i>(Interpreted as Javascript: <code>94</code>, <code>"Hello"</code>, <code>[3, 4, 6]</code>, or <code>["a", "b", "c"]</code> are the recommended formats)</i>
+        <textarea id="input" rows="5" cols="67"></textarea>
+        <i id="invalid" class="error">Invalid input</i>
+        <button id="run">Run</button>
+        <hr/>
+        <b>Output:</b>
+        <select id="type">
+            <option selected>Default</option>
+            <option>Numbers</option>
+            <option>Text</option>
+            <option>Binary (xxd)</option>
+        </select>
+        <textarea id="output" rows="5" cols="67" readonly></textarea>
+        <hr/>
+        <b>CGCC:</b>
+        <textarea id="cgcc" rows="5" cols="67" readonly></textarea>
+    </body>
+</html>
