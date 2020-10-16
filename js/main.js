@@ -34,7 +34,7 @@ window.onload = function() {
         
         var web_safe = (data) => btoa(data).replace(/\//g, "_").replace(/\+/g, "-").replace(/=/g, "");
         
-        page.cgcc.value = "[dotcomma](https://github.com/RedwolfPrograms/dotcomma), " +
+        page.cgcc.value = "# [dotcomma](https://github.com/RedwolfPrograms/dotcomma), " +
             code.length + " bytes\n\n```dotcomma\n" + code + "\n```\n\n[Try it online!]" +
             "(https://redwolfprograms.github.io/dotcomma/?p=" + web_safe(JSON.stringify([code, page.input.value, page.type.selectedIndex])) + ")";
         
