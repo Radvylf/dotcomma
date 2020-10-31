@@ -50,5 +50,8 @@ textarea {
 }
 
 select {
+    min-width: 66pt;
+    font-size: 10pt;
+    line-height: 1.25;
     margin-bottom: 6pt;
 }
