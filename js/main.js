@@ -1,6 +1,7 @@
 window.onload = function() {
     var page = {
         code: document.getElementById("code"),
+        version: document.getElementById("version"),
         brackets: document.getElementById("brackets"),
         input: document.getElementById("input"),
         invalid: document.getElementById("invalid"),
@@ -27,7 +28,7 @@ window.onload = function() {
     var program = atob(get_p().replace(/_/g, "/").replace(/-/g, "+"));
     
     if (program)
-        [page.code.value, page.input.value, page.type.selectedIndex] = JSON.parse(program);
+        [page.code.value, page.input.value, page.type.selectedIndex, page.version.selectedIndex] = JSON.parse(program);
     
     (page.code.oninput = page.input.oninput = function() {
         var code = page.code.value;
@@ -36,7 +37,7 @@ window.onload = function() {
         
         page.cgcc.value = "# [dotcomma](https://github.com/RedwolfPrograms/dotcomma), " +
             code.length + " bytes\n\n```dotcomma\n" + code + "\n```\n\n[Try it online!]" +
-            "(https://redwolfprograms.github.io/dotcomma/?p=" + web_safe(JSON.stringify([code, page.input.value, page.type.selectedIndex])) + ")";
+            "(https://redwolfprograms.github.io/dotcomma/?p=" + web_safe(JSON.stringify([code, page.input.value, page.type.selectedIndex, page.version.selectedIndex])) + ")";
         
         page.brackets.style.display = "";
         page.invalid.style.display = "";
@@ -44,6 +45,8 @@ window.onload = function() {
     
     page.run.onclick = async function() {
         var code = page.code.value;
+        
+        var old = !!page.version.selectedIndex;
         
         try {
             var input = eval(page.input.value);
@@ -155,8 +158,12 @@ window.onload = function() {
         var blocks = [];
         var last = 0n;
         var loop = [];
-        var queue = [...input];
         var jtw = 256;
+        
+        if (!old)
+            var queue = [...input];
+        else
+            var output = [];
 
         var parent = function() {
             var result = blocks;
@@ -233,12 +240,12 @@ window.onload = function() {
                     break;
                 case ",":
                     if (code[ptr - 1] == "[")
-                        last = alternative(queue.pop());
+                        last = alternative((old ? input.pop() : queue.pop()));
                     else if (code[ptr - 1] == "]")
                         last = alternative(block().pop());
                     block.length = 0;
                     if (code[ptr + 1] == "]" && last >= 0)
-                        queue.unshift(last);
+                        old ? output.push(last) : queue.unshift(last);
                     break;
                 case "]":
                     parent().pop();
@@ -277,8 +284,12 @@ window.onload = function() {
         }
 
         // Return output, by default formats as string if input was string
+        // Awful patch to make old version work, but it shouldn't break anything
 
-        queue.reverse();
+        if (!old)
+            queue.reverse();
+        else
+            var queue = output;
 
         var output = "";
         
